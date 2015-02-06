@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="../../../../exercises/day1/inheritance/script.js"></script>
+  <script>
+  $(function(){
+    var result = '',
+        error = false;
+
+    if ((typeof Person) == 'function'){
+      result += '<p>Person определен и я вляется функцией</p>';
+    } else {
+      result += '<p>Person не функция</p>';
+      error = true
+    }
+    if ((typeof Boy) == 'function'){
+      result += '<p>Boy определен и я вляется функцией</p>';
+    } else {
+      result += '<p>Boy не функция</p>';
+      error = true
+    }
+
+    if (!error){
+      var nick = new Boy('Nick'),
+          adam = new Boy('Adam');
+
+      var f = adam.hello();
+      result +='<p>adam.hello() вернул ' + f + '</p>';
+      if (f != 'Adam'){
+        error = true
+      }
+      var f = nick.hello();
+      result +='<p>nick.hello() вернул ' + f + '</p>';
+      if (f != 'Nick'){
+        error = true
+      }
+    }
+
+    $('#result').html(result).addClass(error?'alert alert-danger':'alert alert-success');
+  });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="well">
+      <h3>Задание</h3>
+      <span class="label label-primary">inheritance</span>
+      <p>Создать функцию-конструктор <b>Person</b>. В ней создать метод <b>hello</b>, который будет возвращать имя существа</p>
+      <p>Создать функцию-конструктор <b>Boy</b> и отнаследовать ее от <b>Person</b>. На вход она принимает строку (имя существа), которое должно возврашаться при вызове метода <b>hello</b></p>
+      <p>
+        var nick = new Boy('Nick'), <br />
+          adam = new Boy('Adam'); <br />
+
+        adam.hello(); // Adam <br />
+        nick.hello(); // Nick
+      </p>
+    </div>
+    <div class="well">
+      <h3>Результат</h3>
+      <div id="result">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
